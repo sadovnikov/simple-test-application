@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: web
-        image: "sadovnikov:{{ .Values.version }}"
+        image: "sadovnikov/sample-app:{{ .Values.version }}"
         ports:
         - containerPort: 8080
