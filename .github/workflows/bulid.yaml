@@ -27,6 +27,14 @@ jobs:
         docker build -t sadovnikov/sample-app:${{ github.sha }} docker
         docker login -u sadovnikov -p ${{ secrets.DOCKERHUBTOKEN }}
         docker push sadovnikov/sample-app:${{ github.sha }}
+
+    - name: Redeploy Application
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" > kube.config
+        export KUBECONFIG=$(pwd)/kube.config
+        helm version || echo "NO HELM"
+        kubectl version || echo "NO KUBECTL"
+        kubectl get nodes
     
 
 
