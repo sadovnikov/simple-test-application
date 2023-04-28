@@ -1,0 +1,9 @@
+apiVersion: v2
+name: "sample-application"
+version: "0.1.0"
+sources:
+- "https://github.com/sadovnikov/simple-test-application"
+description: "Sample Application Helm Chart"
+maintainers:
+- name: "Viktor Sadovnikov"
+  email: "viktor@sadovnikov.info"

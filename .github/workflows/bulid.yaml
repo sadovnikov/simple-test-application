@@ -32,10 +32,4 @@ jobs:
       run: |
         echo "${{ secrets.KUBECONFIG }}" > kube.config
         export KUBECONFIG=$(pwd)/kube.config
-        helm version || echo "NO HELM"
-        kubectl version || echo "NO KUBECTL"
-        kubectl get nodes
-    
-
-
-
+        helm upgrade sample-application helm --namespace=sample --install --set version=${{ github.sha }}

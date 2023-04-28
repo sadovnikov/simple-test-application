@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-application
+  labels:
+    app: sample-application
+spec:
+  selector:
+    matchLabels:
+      app: sample-application
+  template:
+    metadata:
+      labels:
+        app: sample-application
+    spec:
+      containers:
+      - name: web
+        image: "sadovnikov:{{ .Values.version }}"
+        ports:
+        - containerPort: 8080
