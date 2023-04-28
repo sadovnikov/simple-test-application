@@ -25,6 +25,7 @@ jobs:
       run: |
         cp target/sample-app-0.0.1-SNAPSHOT.jar docker/sample-app.jar
         docker build -t sadovnikov/sample-app:${{ github.sha }} docker
+        docker login -u sadovnikov -p ${{ secrets.DOCKERHUBTOKEN }}
         docker push sadovnikov/sample-app:${{ github.sha }}
     
 
