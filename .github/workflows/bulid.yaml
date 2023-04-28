@@ -1,0 +1,28 @@
+name: ci-cd-sample
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout Source Code
+      uses: actions/checkout@v3
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3
+      id: java-install
+      with:
+        java-version: '17'
+        distribution: 'corretto'
+        java-package: 'jdk'
+
+    - name: Build Java Application
+      run: ./mvnw clean install
+
+    - name: Copy JAR
+      run: cp target/sample-app-0.0.1-SNAPSHOT.jar docker/sample-app.jar
+
+
+
