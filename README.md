@@ -14,6 +14,7 @@ All steps to build this simple application are in GitHub [workflow](.github/work
   * uses the `KUBECONFIG` secret
   * uses the commit SHA to set the `version` Helm value
 
+The application docker image is pushed to the [Docker Hub](https://hub.docker.com/repository/docker/sadovnikov/sample-app/general).
 
 ## Opening the application in browser
 
