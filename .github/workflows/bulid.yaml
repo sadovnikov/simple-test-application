@@ -28,7 +28,7 @@ jobs:
         docker login -u sadovnikov -p ${{ secrets.DOCKERHUBTOKEN }}
         docker push sadovnikov/sample-app:${{ github.sha }}
 
-    - name: Redeploy Application
+    - name: Redeploy Application to K8S
       run: |
         echo "${{ secrets.KUBECONFIG }}" > kube.config
         export KUBECONFIG=$(pwd)/kube.config

@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: sample-application
+  name: {{ .Values.application }}
   labels:
-    app: sample-application
+    app: {{ .Values.application }}
 spec:
   selector:
-    app: sample-application
+    app: {{ .Values.application }}
   type: ClusterIP
   ports:
   - name: http

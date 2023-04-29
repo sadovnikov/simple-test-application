@@ -1,20 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-application
+  name: {{ .Values.application }}
   labels:
-    app: sample-application
+    app: {{ .Values.application }}
 spec:
   selector:
     matchLabels:
-      app: sample-application
+      app: {{ .Values.application }}
   template:
     metadata:
       labels:
-        app: sample-application
+        app: {{ .Values.application }}
     spec:
       containers:
       - name: web
         image: "sadovnikov/sample-app:{{ .Values.version }}"
         ports:
         - containerPort: 8080
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.application }}
+  labels:
+    app: {{ .Values.application }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Values.application }}
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
